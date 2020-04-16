@@ -4,6 +4,7 @@
         <title>Ebay ECE</title>
 	   <link rel="stylesheet" type="text/css" href="page1.css">
 	   <meta charset="utf-8">
+
     </head>
        <body>
 
@@ -15,7 +16,9 @@
   </br>
 
 		<ul>
+<li><a href='categories.html'>Catégories</a></li>  </br>
 
+			<li><a href="methodeachat.html">Achats</a></li>  </br>
 			
 			<li><a href='vendeurcréercompte.html'>Vendre</a></li>  </br>
    
@@ -30,60 +33,52 @@
  </div>
 
  <div id="section">
- <form action="créercompte.php" method="post">
- <h1>Mon compte</h1>
+ <h1>Supprimer un objet en vente</h1>
  </br>
  </br>
  </br>
  </br>
-
-
+<form action="supprimerobjet.php" method="post">
 <table class="tabcenter">
+<tr>
+<td>Numéro d'identification:</td>
+<td><input type="text" name="identification"></td></br>
+
+</tr>
 <tr>
 <td>Nom:</td>
-<td><input type="text" name="nom"></td></br>
-</tr>
-
-<tr>
-<td>Prenom:</td>
-<td><input type="text" name="prenom"></td>
+<td><input type="text" name="nom"></td>
 </tr>
 <tr>
-<td>Adresse:</td>
-<td><input type="text" name="adresse"></td>
-</tr>
-<tr>
-<td>Email:</td>
-<td><input type="text" name="email"></td>
-</tr>
-<tr>
-<td>Mot de passe:</td>
-<td><input type="password" name="mdp"></td>
-</tr>
-<tr>
-<td>Information sur le paiement:</td>
-<td><select name="paiement" size=1>
-<option>Visa... </option>
-<option> Paypal </option>
-<option> Autres </option>
+<td>Catégorie:</td>
+<td><select name="catégorie" size=1>
+<option>Vente aux enchères </option>
+<option> Vente direct </option>
+<option> Vente par négociation </option>
 </select></td>
+</tr>
+<tr>
 
+<td>Prix:</td>
+<td><input type="text" name="prix"></td>
+</tr>
+<tr>
+<td>Description:</td>
+<td><input type="text" name="descrition"></td>
 </tr>
 </table>
+</br>
+</br>
 </br>
 </br>
 </br>
 <table class="tabcenter">
 <tr>
-<td>Si vous faites une offre sur un article, vous etes sous contrat légale pour l'acheter si le vendeur accepte l'offre.</td>
-<td><input type="radio" name="doc" ></td>
-</tr>
-<tr>
 <td colspan="2" align="center">
-<input type="submit" name="button0"  onclick=window.location.href="postconnexion.html"; value="créecompte"></td>
+<input type="submit" name="button39" ; value="supprimer l'objet en vente"></td>
 </tr>
 </table>
- </form>
+</form>
 
  </div>
  <div id="footer">
