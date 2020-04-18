@@ -41,27 +41,11 @@ $result = mysqli_query($db_handle, $sql);
 if (mysqli_num_rows($result) != 0) {
 echo "account already exists. Duplicate not allowed.";
 } else {
-//$sql = "INSERT INTO 'vendeurs'('Pseudo', 'Nom','Prenom', 'Email', 'Photo' )
- //VALUES ('%$pseudo%', '%$nom%','%$prenom%','%$email%','')";
     $sql = "INSERT INTO `vendeurs`(`Pseudo`, `Nom`, `Prenom`, `Email`, `Photo`) 
     VALUES ('$pseudo','$nom','$prenom','$email','')";
 $result = mysqli_query($db_handle, $sql);
 echo "Add successful. <br>";
-$sql = "SELECT * FROM vendeurs";
-if ($pseudo != "") {
-$sql .= " WHERE Pseudo LIKE '%$pseudo%'";
-if ($email != "") {
-$sql .= " AND Email LIKE '%$email%'";
-}
-}
-$result = mysqli_query($db_handle, $sql);
 
-echo "pseudo: " . $pseudo . "<br>";
-echo "nom: " . $nom . "<br>";
-echo "prenom: " . $prenom . "<br>";
-echo "mail: " . $email . "<br>";
-    
-    
 
 }
 } else {

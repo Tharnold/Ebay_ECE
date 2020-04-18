@@ -1,80 +1,150 @@
 <?php
 
-//identifier le nom de base de données
-$database = "utilisateurs";
-//connectez-vous dans votre BDD
-//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
-$db_handle = mysqli_connect('localhost:3307', 'root', '' );
-$db_found = mysqli_select_db($db_handle, $database);
+
+	$database = "utilisateurs";
+
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	$db_found = mysqli_select_db($db_handle, $database);
+
+	$nom = isset($_POST["nom"])? $_POST["nom"] : "";
+	$prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
+	$email = isset($_POST["email"])? $_POST["email"] : "";
+	$NP = isset($_POST["NP"])? $_POST["NP"] : "";
+	$adressel1 = isset($_POST["adressel1"])? $_POST["adressel1"] : "";
+	$adressel2 = isset($_POST["adressel2"])? $_POST["adressel2"] : "";
+	$ville = isset($_POST["ville"])? $_POST["ville"] : "";
+	$codeP = isset($_POST["codeP"])? $_POST["codeP"] : "";
+	$pays = isset($_POST["pays"])? $_POST["pays"] : "";
+	$numTel = isset($_POST["numTel"])? $_POST["numTel"] : "";
+	$tyeCarte = isset($_POST["tpyeCarte"])? $_POST["typeCarte"] : "";
+	$numeroCarte = isset($_POST["numeroCarte"])? $_POST["numeroCarte"] : "";
+	$nomCarte = isset($_POST["nomCarte"])? $_POST["nomCarte"] : "";
+	$dateExpi = isset($_POST["dateExpi"])? $_POST["dateExpi"] : "";
+	$codeSecu = isset($_POST["codeSecu"])? $_POST["codeSecu"] : "";
+	$password = isset($_POST["password"])? $_POST["password"] : "";
+	
 
 
-$prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
-$nom = isset($_POST["nom"])? $_POST["nom"] : "";
-$adresse = isset($_POST["adresse"])? $_POST["adresse"] : "";
-$email = isset($_POST["email"])? $_POST["email"] : "";
 
-$paiement = isset($_POST["paiement"])? $_POST["paiement"] : "";
-$doc = isset($_POST["doc"])? $_POST["doc"] : "";
 
- $erreur = "";
+	if (isset($_POST['button0'])) {
+		if ($db_found) {
+			$sql = "SELECT * FROM acheteuracompte";
+			if ($nom != "") {
+				$sql .= " WHERE nom LIKE '%$nom%'";
+				if ($prenom != "") {
+					$sql .= " AND prenom LIKE '%$prenom%'";
+					if ($email != "") {
+						$sql .= " AND email LIKE '%$email%'";
+						if ($NP != "") {
+							$sql .= " AND NP LIKE '%$NP%'";
+							if ($adressel1 != "") {
+								$sql .= " AND adressel1 LIKE '%$adressel1%'";
+								if ($adressel2 != "") {
+									$sql .= " AND adressel2 LIKE '%$adressel2%'";
+									if ($ville != "") {
+										$sql .= " AND ville LIKE '%$ville%'";
+										if ($codeP != "") {
+											$sql .= " AND codeP LIKE '%$codeP%'";
+											if ($pays != "") {
+												$sql .= " AND pays LIKE '%$pays%'";
+												if ($numTel != "") {
+													$sql .= " AND numTel LIKE '%$numTel%'";
+													if ($typeCarte != "") {
+														$sql .= " AND typeCarte LIKE '%$typeCarte%'";
+														if ($numeroCarte != "") {
+															$sql .= " AND numeroCarte LIKE '%$numeroCarte%'";
+															if ($nomCarte != "") {
+																$sql .= " AND nomCarte LIKE '%$nomCarte%'";
+																if ($dateExpi != "") {
+																	$sql .= " AND dateExpi LIKE '%$dateExpi%'";
+																	if ($codeSecu != "") {
+																		$sql .= " AND codeSecu LIKE '%$codeSecu%'";
+																		if ($password != "") {
+																			$sql .= " AND password LIKE '%$password%'";
+																		}
+																	}
+																}		
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}	
+			}
 
- if ($prenom == "") { 
- $erreur .= "prenom est vide. <br>"; }
- if ($nom == "") {
- $erreur .= "nom est vide. <br>"; }
- if ($adresse == "") {
- $erreur .= "adresse est vide. <br>"; }
- if ($email == "") {
- $erreur .= "email est vide. <br>"; }
+		$result = mysqli_query($db_handle, $sql);
+		
+		if (mysqli_num_rows($result) != 0) {
+				echo "Compte already exists. Duplicate not allowed.";
+		} else {
+			$sql = "INSERT INTO acheteuracompte(nom,prenom,email,NP,adressel1,adressel2,ville,codeP,pays,numTel,typeCarte,numeroCarte,nomCarte,dateExpi,codeSecu,password) VALUES('$nom', '$prenom', '$email','$NP', '$adressel1', '$adressel2', '$ville', '$codeP', '$pays', '$numTel', '$typeCarte', '$numeroCarte', '$nomCarte', '$dateExpi', '$codeSecu', '$password')";
 
- if ($paiement == "") {
- $erreur .= "paiement est vide. <br>"; }
-if ($doc == "") { 
-    $erreur .= "le doc n'est pas coché. <br>"; }
+			$result = mysqli_query($db_handle, $sql);
+			echo "Add successful. <br>";
+			
+			$sql = "SELECT * FROM acheteuracompte";
+			if ($nom != "") {
+				$sql .= " WHERE nom LIKE '%$nom%'";
+				if ($prenom != "") {
+					$sql .= " AND prenom LIKE '%$prenom%'";
+					if ($email != "") {
+						$sql .= " AND email LIKE '%$email%'";
+						if ($NP != "") {
+							$sql .= " AND NP LIKE '%$NP%'";
+							if ($adressel1 != "") {
+								$sql .= " AND adressel1 LIKE '%$adressel1%'";
+								if ($adressel2 != "") {
+									$sql .= " AND adressel2 LIKE '%$adressel2%'";
+									if ($ville != "") {
+										$sql .= " AND ville LIKE '%$ville%'";
+										if ($codeP != "") {
+											$sql .= " AND codeP LIKE '%$codeP%'";
+											if ($pays != "") {
+												$sql .= " AND pays LIKE '%$pays%'";
+												if ($numTel != "") {
+													$sql .= " AND numTel LIKE '%$numTel%'";
+													if ($typeCarte != "") {
+														$sql .= " AND typeCarte LIKE '%$typeCarte%'";
+														if ($numeroCarte != "") {
+															$sql .= " AND numeroCarte LIKE '%$numeroCarte%'";
+															if ($nomCarte != "") {
+																$sql .= " AND nomCarte LIKE '%$nomCarte%'";
+																if ($dateExpi != "") {
+																	$sql .= " AND dateExpi LIKE '%$dateExpi%'";
+																	if ($codeSecu != "") {
+																		$sql .= " AND codeSecu LIKE '%$codeSecu%'";
+																		if ($password != "") {
+																			$sql .= " AND password LIKE '%$password%'";
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}	
+			}
+		}
+	}else {
+		echo "Database not found";
+		}
+	}
 
- if ($erreur == "") {
-	    if (isset($_POST['button0'])) {
-if ($db_found) {
-$sql = "SELECT * FROM acheteurs";
-if ($nom != "") {
-$sql .= " WHERE nom LIKE '%$nom%'";
-if ($email != "") {
-$sql .= " AND Email LIKE '%$email%'";
-}
-}
-$result = mysqli_query($db_handle, $sql);
-if (mysqli_num_rows($result) != 0) {
-echo "compte already exists. Duplicate not allowed.";
-} else {
-$sql = "INSERT INTO acheteurs(Prenom, Nom, Email, Adresse )
- VALUES('$prenom', '$nom', '$email', '$adresse')";
-$result = mysqli_query($db_handle, $sql);
-echo "Add successful. <br>";
-$sql = "SELECT * FROM vendeurs";
-if ($nom != "") {
-$sql .= " WHERE Pseudo LIKE '%$nom%'";
-if ($email != "") {
-$sql .= " AND Email LIKE '%$email%'";
-}
-}
-$result = mysqli_query($db_handle, $sql);
-
-echo "ID: " . $prenom . "<br>";
-echo "Titre: " . $email . "<br>";
-echo "Titre: " . $nom . "<br>";
-echo "Auteur: " . $email . "<br>";
-
-}
-} else {
-echo "Database not found";
-}
-///header('Location: http://localhost/projet%20page%20web/postconnexion.html');
- // exit();
-}
+	mysqli_close($db_handle);
  
- }
- else {
- echo "Erreur :". $erreur. '<br>';
- echo "Vous devez remplir tous les champs afin de vous créer un compte.";
- }
+
 ?>

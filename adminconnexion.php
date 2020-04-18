@@ -4,7 +4,7 @@
 $database = "utilisateurs";
 //connectez-vous dans votre BDD
 //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien)
-$db_handle = mysqli_connect('localhost:3307', 'root', '' );
+$db_handle = mysqli_connect('localhost:3308', 'root', '' );
 $db_found = mysqli_select_db($db_handle, $database);
 
 

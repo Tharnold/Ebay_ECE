@@ -24,8 +24,8 @@ $doc = isset($_POST["doc"])? $_POST["doc"] : "";
  $erreur .= "codepostal est vide. <br>"; }
 
  if ($erreur == "") {
-   header('Location: http://localhost/projet%20page%20web/postconnexion.html');
-  exit();
+   ///header('Location: http://localhost/projet%20page%20web/postconnexion.html');
+ // exit();
  }
  else {
  echo "Erreur :". $erreur. '<br>';
