@@ -58,12 +58,12 @@
 <td><input type="text" name="prenom"></td>
 </tr>
 <tr>
-<td>Numero de téléphone:</td>
-<td><input type="text" name="numeroTel"></td>
+<td>password:</td>
+<td><input type="password" name="password"></td>
 </tr>
 <tr>
-<td>photo:</td>
-<td><input type="text" name="photo"></td>
+<td>iban:</td>
+<td><input type="text" name="iban"></td>
 </tr>
 </table>
 </br>
@@ -91,20 +91,21 @@ $db_handle = mysqli_connect('localhost', 'root', '' );
 $db_found = mysqli_select_db($db_handle, $database);
 
 
-$pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "";
-$nom = isset($_POST["nom"])? $_POST["nom"] : "";
-$email = isset($_POST["email"])? $_POST["email"] : "";
-$numeroTel = isset($_POST["numeroTel"])? $_POST["numeroTel"] : "";
-$prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
-$photo = isset($_POST["photo"])? $_POST["photo"] : "";
+	$nom = isset($_POST["nom"])? $_POST["nom"] : "";
+	$prenom = isset($_POST["prenom"])? $_POST["prenom"] : "";
+	$pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "";	
+	$email = isset($_POST["email"])? $_POST["email"] : "";
+	$password = isset($_POST["password"])? $_POST["password"] : "";
+	$iban = isset($_POST["iban"])? $_POST["iban"] : "";
 
 
 
- $erreur = "";
+
+
+
 
 if (isset($_POST['button0'])) {
-
-
+		$erreur = "";
 
  if ($email == "") {
  $erreur .= "email est vide. <br>"; }
@@ -114,14 +115,17 @@ if (isset($_POST['button0'])) {
  $erreur .= "nom est vide. <br>"; }
    if ($prenom == "") {
  $erreur .= "prenom est vide. <br>"; }
-    if ($numeroTel	== "") {
- $erreur .= "numero de téléphone est vide. <br>"; }
+ 
+     if ($password	== "") {
+ $erreur .= "password est vide. <br>"; }
+     if ($iban	== "") {
+ $erreur .= "iban est vide. <br>"; }
 
  if ($erreur == "") {
 if ($db_found) {
 $sql = "SELECT * FROM vendeur";
-if ($nom != "") {
-$sql .= " WHERE nom LIKE '%$nom%'";
+if ($password != "") {
+$sql .= " WHERE password LIKE '%$password%'";
 if ($pseudo != "") {
 $sql .= " AND pseudo LIKE '%$pseudo%'";
 }
@@ -130,8 +134,8 @@ $result = mysqli_query($db_handle, $sql);
 if (mysqli_num_rows($result) != 0) {
 echo " already exists. Duplicate not allowed.";
 } else {
-$sql = "INSERT INTO vendeur(pseudo,nom,prenom, email, numeroTel, photo)
- VALUES('$pseudo', '$nom', '$prenom', '$email','$numeroTel' , '$photo')";
+$sql = "INSERT INTO vendeur(pseudo,nom,prenom, email, password, iban)
+ VALUES('$pseudo', '$nom', '$prenom', '$email','$password' , '$iban')";
 $result = mysqli_query($db_handle, $sql);
 echo "Add successful. <br>";
 }
@@ -147,9 +151,11 @@ echo "Database not found";
  }
 }
 
-$erreur = "";
+
 if (isset($_POST['button1'])) {	  
-if ($email == "") {
+		$erreur = "";
+
+ if ($email == "") {
  $erreur .= "email est vide. <br>"; }
   if ($pseudo == "") {
  $erreur .= "pseudo est vide. <br>"; }
@@ -157,21 +163,25 @@ if ($email == "") {
  $erreur .= "nom est vide. <br>"; }
    if ($prenom == "") {
  $erreur .= "prenom est vide. <br>"; }
-    if ($numeroTel	== "") {
- $erreur .= "numero de téléphone est vide. <br>"; }
+ 
+     if ($password	== "") {
+ $erreur .= "password est vide. <br>"; }
+     if ($iban	== "") {
+ $erreur .= "iban est vide. <br>"; }
 
  
 if ($db_found) {
- if ($erreur == "") {
+
 
 $sql = "SELECT * FROM vendeur";
-if ($nom != "") {
-$sql .= " WHERE nom LIKE '%$nom%'";
+if ($password != "") {
+$sql .= " WHERE password LIKE '%$password%'";
+
 }
 $result = mysqli_query($db_handle, $sql);
 if (mysqli_num_rows($result) != 0) {
 
-		  $sql = "delete FROM vendeur WHERE nom=$nom";
+$sql = "DELETE FROM vendeur WHERE password=$password";
 $result = mysqli_query($db_handle, $sql);
 echo "delete successful. <br>";
 } 
@@ -179,11 +189,7 @@ else {
 	  echo " It doestn't exists. You can't delete it.";
 	  }
 
-}
- else {
- echo "Erreur :<br>". $erreur. '<br>';
- echo "Vous devez remplir tous les champs afin de supprimer l'objet en vente.";
-}
+
 }
  else {
 	 echo "Database not found";

@@ -23,7 +23,7 @@
 			
 		<li><a href="connexioncompte.php">Me connecter</a></li>  </br>
 			
-		<li><a href="creercompte.php">Créer un compte</a></li>  </br>
+		<li><a href="reinitialisation.php">Se déconnecter</a></li>  </br>
 
 	<li><a href="#";><img src="panier1.png" id="imgpanier"/></a></li>
 	</ul>
@@ -88,9 +88,12 @@ $sql .= " AND email LIKE '%$email%'";
  $result = mysqli_query($db_handle, $sql);
 if (mysqli_num_rows($result) != 0) {
   ///vérifier qu'il est bien ds la bdd
-  header('Location: http://localhost/projet/vendeurcompte.html');
+  while($donnee = mysqli_fetch_assoc($result)) {
+
+   $result = mysqli_query($db_handle, $sql);
+  header('Location: http://localhost/projet/vendeurcompte1.php');
   exit();
-}else {echo " créer vous un compte avant de vous connecter";
+}}else {echo " créer vous un compte avant de vous connecter";
  }
  }else {
  echo "Erreur :<br>". $erreur. '<br>';

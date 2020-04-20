@@ -95,7 +95,8 @@ $sql .= " AND email LIKE '%$email%'";
 }
 $result = mysqli_query($db_handle, $sql);
 if (mysqli_num_rows($result) != 0) {
-///vérifier qu'il est bien ds la bdd
+$sql = 'SELECT * FROM admin WHERE prenom=$prenom UPDATE admin SET connectAdmin=1';
+$result = mysqli_query($db_handle, $sql);
   header('Location: http://localhost/projet/admincompte.html');
   exit();
  }else{echo " créer vous un compte avant de vous connecter";}

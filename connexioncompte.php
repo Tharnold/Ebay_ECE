@@ -17,7 +17,7 @@
 	<ul>
 
 			
-			<li><a href='vendeurcreercompte.html'>Vendre</a></li>  </br>
+			<li><a href='vendeurcreercompte.php'>Vendre</a></li>  </br>
    
 			<li><a href='Adminconnexion.php'>Admin</a></li>  </br>
 			
